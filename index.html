@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FunMath Kids</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+  background: #fff9ec;
+  color: #394052;
+}
+
+header {
+  background: linear-gradient(120deg,#ffb84d,#ff8e9e);
+  padding: 25px;
+  text-align: center;
+  color: white;
+}
+
+header h1 {
+  font-size: 32px;
+}
+
+header p {
+  margin-top: 8px;
+}
+
+.hero {
+  text-align: center;
+  padding: 35px 15px;
+  background: #fff0cf;
+}
+
+.hero .mascot {
+  font-size: 75px;
+}
+
+.hero h2 {
+  color: #f18a46;
+  margin: 10px;
+}
+
+.hero p {
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 25px 18px;
+}
+
+h2 {
+  color: #ee8b47;
+  margin-bottom: 18px;
+}
+
+.menus {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+}
+
+.menu {
+  background: white;
+  border-radius: 20px;
+  padding: 22px 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px #ddd5c555;
+  border: 2px solid #fff0d6;
+}
+
+.menu .emoji {
+  font-size: 45px;
+}
+
+.menu h3 {
+  margin: 10px;
+}
+
+.menu p {
+  font-size: 13px;
+  color: #888;
+}
+
+button {
+  background: #ffab57;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 12px;
+}
+
+button:hover {
+  opacity: .85;
+}
+
+.game {
+  display: none;
+  background: white;
+  padding: 25px 18px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 4px 15px #ddd5c555;
+}
+
+.game h2 {
+  margin-bottom: 12px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.info span {
+  background: #fff1d9;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.question {
+  background: #fff5df;
+  padding: 35px 10px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.question h1 {
+  color: #ed9147;
+  font-size: 43px;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+}
+
+.answer {
+  background: #e9f5ff;
+  color: #42658a;
+  border: 2px solid #d5eafa;
+  font-size: 23px;
+  padding: 18px;
+  margin: 0;
+}
+
+.answer:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.feedback {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  min-height: 28px;
+}
+
+.result {
+  display: none;
+  background: #fff4d7;
+  padding: 25px;
+  text-align: center;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.result .emoji {
+  font-size: 60px;
+}
+
+.result h2 {
+  margin-top: 15px;
+}
+
+footer {
+  background: #ffab57;
+  color: white;
+  padding: 25px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+@media(max-width:500px) {
+  header h1 {
+    font-size: 25px;
+  }
+
+  .menus {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .question h1 {
+    font-size: 35px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌈 FunMath Kids</h1>
+  <p>Belajar Matematika Sambil Bermain!</p>
+</header>
+
+<section class="hero">
+  <div class="mascot">🐻 🐰 🐼</div>
+  <h2>Halo, Adik Pintar! 👋</h2>
+  <p>
+    Ayo bermain angka bersama!
+    Pilih permainan matematika favoritmu
+    dan kumpulkan bintang sebanyak-banyaknya ⭐
+  </p>
+</section>
+
+<div class="container" id="menu">
+  <h2>🎮 Pilih Permainan</h2>
+
+  <div class="menus">
+
+    <div class="menu">
+      <div class="emoji">➕</div>
+      <h3>Penjumlahan</h3>
+      <p>Ayo belajar menambah angka!</p>
+      <button onclick="mulai('+')">Main Yuk!</button>
+    </div>
+
+    <div class="menu">
+      <div class="emoji">➖</div>
+      <h3>Pengurangan</h3>
+      <p>Ayo belajar mengurangi angka!</p>
+      <button onclick="mulai('-')">Main Yuk!</button>
+    </div>
+
+    <div class="menu">
+      <div class="emoji">✖️</div>
+      <h3>Perkalian</h3>
+      <p>Ayo belajar perkalian!</p>
+      <button onclick="mulai('*')">Main Yuk!</button>
+    </div>
+
+    <div class="menu">
+      <div class="emoji">➗</div>
+      <h3>Pembagian</h3>
+      <p>Ayo belajar membagi angka!</p>
+      <button onclick="mulai('/')">Main Yuk!</button>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="game" id="game">
+
+    <h2 id="judulGame">Permainan Matematika</h2>
+
+    <div class="info">
+      <span>⭐ Skor: <b id="skor">0</b></span>
+      <span>📝 Soal: <b id="nomor">1</b>/10</span>
+    </div>
+
+    <div class="question">
+      <p>Berapa hasil dari ...?</p>
+      <br>
+      <h1 id="pertanyaan">5 + 3 = ?</h1>
+    </div>
+
+    <div class="answers" id="jawaban"></div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <button id="lanjut" onclick="soalBerikutnya()"
+    style="display:none">
+      Lanjut ➜
+    </button>
+
+  </div>
+
+  <div class="result" id="result">
+    <div class="emoji">🏆</div>
+    <h2>Hebat Sekali!</h2>
+    <p id="hasilAkhir"></p>
+    <p id="bintang"></p>
+    <button onclick="kembali()">Main Lagi</button>
+  </div>
+
+</div>
+
+<footer>
+  🌈 FunMath Kids © 2026
+  <p>Belajar Rajin, Jadi Anak Pintar! ⭐</p>
+</footer>
+
+<script>
+
+let operasi = "+";
+let angka1 = 0;
+let angka2 = 0;
+let hasilBenar = 0;
+let skor = 0;
+let nomorSoal = 1;
+let sudahMenjawab = false;
+
+function angkaAcak(min,max) {
+  return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+function mulai(op) {
+
+  operasi = op;
+  skor = 0;
+  nomorSoal = 1;
+
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("game").style.display = "block";
+
+  let nama = {
+    "+":"Penjumlahan",
+    "-":"Pengurangan",
+    "*":"Perkalian",
+    "/":"Pembagian"
+  };
+
+  document.getElementById("judulGame").innerText =
+    "🎮 " + nama[op];
+
+  buatSoal();
+
+  document.getElementById("game").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+function buatSoal() {
+
+  if(operasi === "+") {
+    angka1 = angkaAcak(1,20);
+    angka2 = angkaAcak(1,20);
+    hasilBenar = angka1 + angka2;
+  }
+
+  else if(operasi === "-") {
+    angka1 = angkaAcak(5,30);
+    angka2 = angkaAcak(1,angka1);
+    hasilBenar = angka1 - angka2;
+  }
+
+  else if(operasi === "*") {
+    angka1 = angkaAcak(1,10);
+    angka2 = angkaAcak(1,10);
+    hasilBenar = angka1 * angka2;
+  }
+
+  else {
+    angka2 = angkaAcak(1,10);
+    hasilBenar = angkaAcak(1,10);
+    angka1 = angka2 * hasilBenar;
+  }
+
+  let simbol = {
+    "+":"+",
+    "-":"-",
+    "*":"×",
+    "/":"÷"
+  };
+
+  document.getElementById("pertanyaan").innerText =
+    angka1+" "+simbol[operasi]+" "+angka2+" = ?";
+
+  document.getElementById("nomor").innerText = nomorSoal;
+  document.getElementById("skor").innerText = skor;
+
+  document.getElementById("feedback").innerText = "";
+  document.getElementById("lanjut").style.display = "none";
+
+  sudahMenjawab = false;
+
+  buatPilihan();
+}
+
+function buatPilihan() {
+
+  let pilihan = [hasilBenar];
+
+  while(pilihan.length < 4) {
+    let salah = hasilBenar + angkaAcak(-10,10);
+
+    if(salah >= 0 && !pilihan.includes(salah)) {
+      pilihan.push(salah);
+    }
+  }
+
+  pilihan.sort(() => Math.random()-0.5);
+
+  let area = document.getElementById("jawaban");
+
+  area.innerHTML = "";
+
+  pilihan.forEach(nilai => {
+
+    let btn = document.createElement("button");
+
+    btn.className = "answer";
+    btn.innerText = nilai;
+
+    btn.onclick = () => periksa(nilai,btn);
+
+    area.appendChild(btn);
+
+  });
+}
+
+function periksa(jawaban,btn) {
+
+  if(sudahMenjawab) return;
+
+  sudahMenjawab = true;
+
+  let semua = document.querySelectorAll(".answer");
+
+  semua.forEach(x => x.disabled = true);
+
+  let feedback = document.getElementById("feedback");
+
+  if(jawaban === hasilBenar) {
+
+    skor += 10;
+
+    feedback.innerHTML = "🎉 Yeay! Jawaban kamu benar! +10 ⭐";
+    feedback.style.color = "green";
+
+    btn.style.background = "#b9edbd";
+
+  } else {
+
+    feedback.innerHTML =
+      "😊 Belum tepat! Jawaban yang benar adalah " + hasilBenar;
+
+    feedback.style.color = "#e58a49";
+
+    btn.style.background = "#ffd1d1";
+
+    semua.forEach(x => {
+      if(Number(x.innerText) === hasilBenar) {
+        x.style.background = "#b9edbd";
+      }
+    });
+
+  }
+
+  document.getElementById("skor").innerText = skor;
+
+  if(nomorSoal < 10) {
+    document.getElementById("lanjut").style.display = "inline-block";
+  } else {
+    document.getElementById("lanjut").innerText = "Lihat Hasil 🏆";
+    document.getElementById("lanjut").style.display = "inline-block";
+  }
+
+}
+
+function soalBerikutnya() {
+
+  if(nomorSoal < 10) {
+    nomorSoal++;
+    document.getElementById("lanjut").innerText = "Lanjut ➜";
+    buatSoal();
+  } else {
+    selesai();
+  }
+
+}
+
+function selesai() {
+
+  document.getElementById("game").style.display = "none";
+
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("hasilAkhir").innerText =
+    "Kamu berhasil mendapatkan " + skor + " dari 100 poin!";
+
+  let bintang = Math.round(skor/20);
+
+  document.getElementById("bintang").innerText =
+    "Bintang yang kamu dapatkan: " + "⭐".repeat(bintang || 0);
+
+  document.getElementById("result").scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+function kembali() {
+
+  document.getElementById("result").style.display = "none";
+  document.getElementById("game").style.display = "none";
+  document.getElementById("menu").style.display = "block";
+
+  document.getElementById("menu").scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+</script>
+
+</body>
+</html>
